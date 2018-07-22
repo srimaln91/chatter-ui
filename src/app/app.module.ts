@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { UserRegistrationComponent } from './user-registration/user-registration.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 
 @NgModule({
   declarations: [
