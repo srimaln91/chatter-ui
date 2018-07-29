@@ -10,13 +10,18 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { ChatHomeComponent } from './components/chat-home/chat-home.component';
+import { ChatService } from './services/chat-service/chat-service.service';
+import { ConversationComponent } from './components/conversation/conversation/conversation.component';
+import { UserListComponent } from './components/user-list/user-list/user-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
     UserLoginComponent,
-    ChatHomeComponent
+    ChatHomeComponent,
+    ConversationComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,7 @@ import { ChatHomeComponent } from './components/chat-home/chat-home.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

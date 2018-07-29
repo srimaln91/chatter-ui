@@ -1,0 +1,14 @@
+<div class="inbox_chat">
+  <div *ngFor="let user of users" class="chat_list active_chat">
+    <div class="chat_people">
+      <div class="chat_img">
+        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+      <div class="chat_ib">
+        <h5>{{ user.name.uname  }}
+          <span class="chat_date">Dec 25</span>
+        </h5>
+        <p>{{ user.email }}</p>
+      </div>
+    </div>
+  </div>
+</div>

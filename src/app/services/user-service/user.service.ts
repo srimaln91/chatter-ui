@@ -8,7 +8,7 @@ import { User } from '../../models/user';
 })
 export class UserService {
 
-  private apiBase = environment.apiEndpoint;
+  private apiBase = environment.apiEndpoint + '/user';
   private requestOptions: RequestOptions;
 
   constructor(private http: Http) {
