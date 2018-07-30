@@ -23,7 +23,8 @@ export class UserLoginComponent implements OnInit {
   userLogin() {
     this.userService.loginUser({user: this.email, password: this.password})
     .then(user => {
-      if (user === false) {
+      console.log(user);
+      if (user.success === false) {
         this.loginError = true;
       } else {
         if (user.authToken !== false ) {
@@ -31,6 +32,8 @@ export class UserLoginComponent implements OnInit {
         }
       }
     })
-    .catch(err => console.log);
+    .catch(err => {
+      this.loginError = true;
+    });
   }
 }

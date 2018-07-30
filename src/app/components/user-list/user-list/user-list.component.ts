@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { ChatService } from '../../../services/chat-service/chat-service.service';
 import { User } from '../../../models/user';
 
@@ -10,6 +10,10 @@ import { User } from '../../../models/user';
 export class UserListComponent implements OnInit {
 
   users: User[];
+
+  @Output()
+  selectedUser: EventEmitter<User> = new EventEmitter();
+
   constructor(private chatService: ChatService) { }
 
   ngOnInit() {
@@ -20,6 +24,10 @@ export class UserListComponent implements OnInit {
     .catch(err => {
       console.log(err);
     });
+  }
+
+  selectUser(user: User) {
+    this.selectedUser.emit(user);
   }
 
 }

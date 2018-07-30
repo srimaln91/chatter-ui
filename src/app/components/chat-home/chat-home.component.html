@@ -5,7 +5,7 @@
       <div class="inbox_people">
         <div class="headind_srch">
           <div class="recent_heading">
-            <h4>Users</h4>
+            <h4>Users : {{ selectedUser?.name.uname }}</h4>
           </div>
           <div class="srch_bar">
             <div class="stylish-input-group">
@@ -18,9 +18,9 @@
             </div>
           </div>
         </div>
-        <app-user-list></app-user-list>
+        <app-user-list (selectedUser)="setUser($event)"></app-user-list>
       </div>
-      <app-conversation></app-conversation>
+      <app-conversation [conversation]="conversation"></app-conversation>
     </div>
 
   </div>

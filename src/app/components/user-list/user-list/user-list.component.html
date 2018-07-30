@@ -1,5 +1,5 @@
 <div class="inbox_chat">
-  <div *ngFor="let user of users" class="chat_list active_chat">
+  <div *ngFor="let user of users" class="chat_list active_chat" (click)="selectUser(user)">
     <div class="chat_people">
       <div class="chat_img">
         <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>

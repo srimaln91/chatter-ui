@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import {User} from '../../models/user';
 import { UserService } from '../../services/user-service/user.service';
 import { Observable } from 'rxjs';
-
+import { Conversation } from '../../models/conversation';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +13,7 @@ export class ChatService {
 
   private url = environment.apiEndpoint;
   private socket;
-  private apiBase = environment.apiEndpoint + '/user';
+  private apiBase = environment.apiEndpoint;
   private requestOptions: RequestOptions;
 
   constructor(private http: Http, private userService: UserService) {
@@ -47,10 +47,19 @@ export class ChatService {
   }
 
   public getAllUsers(): Promise<User[]> {
-    return this.http.get(this.apiBase + '/', this.requestOptions)
+    return this.http.get(this.apiBase + '/user', this.requestOptions)
     .toPromise()
     .then(res => {
       return res.json() as User[];
+    })
+    .catch(this.handleError);
+  }
+
+  public createConversation(users: String[]): Promise<Conversation> {
+    return this.http.post(this.apiBase + '/conversation', users, this.requestOptions)
+    .toPromise()
+    .then(conversation => {
+      return conversation.json().conversation as Conversation;
     })
     .catch(this.handleError);
   }
