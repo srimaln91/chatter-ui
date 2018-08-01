@@ -6,6 +6,8 @@ import {User} from '../../models/user';
 import { UserService } from '../../services/user-service/user.service';
 import { Observable } from 'rxjs';
 import { Conversation } from '../../models/conversation';
+import { Message } from '../../models/message';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,11 +32,9 @@ export class ChatService {
 
   }
 
-  public sendMessage(message) {
-    const user = this.userService.getLocalUser();
-    const t = this.socket.emit('userid', user._id);
-    console.log(t);
-
+  public sendMessage(message: Message) {
+    // const user = this.userService.getLocalUser();
+    // const t = this.socket.emit(message);
     this.socket.emit('new-message', message);
   }
 
@@ -56,7 +56,7 @@ export class ChatService {
   }
 
   public createConversation(users: String[]): Promise<Conversation> {
-    return this.http.post(this.apiBase + '/conversation', users, this.requestOptions)
+    return this.http.post(this.apiBase + '/conversation', {users: users}, this.requestOptions)
     .toPromise()
     .then(conversation => {
       return conversation.json().conversation as Conversation;

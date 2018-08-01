@@ -14,16 +14,11 @@ export class ChatHomeComponent implements OnInit {
   selectedUser: User;
   loggedInUser: User;
   conversation: Conversation;
-  message: String;
 
   constructor(private chatService: ChatService, private userService: UserService) { }
 
   ngOnInit() {
     this.loggedInUser = this.userService.getLocalUser();
-  }
-
-  sendMessage() {
-    this.chatService.sendMessage(this.message);
   }
 
   setUser(user: User) {
