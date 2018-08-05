@@ -15,6 +15,9 @@ export class ConversationComponent implements OnInit, OnChanges {
   @Input()
   conversation: Conversation;
 
+  @Input()
+  user: User;
+
   newMessage: Message;
 
   constructor(private chatService: ChatService, private userService: UserService) { }
@@ -23,15 +26,18 @@ export class ConversationComponent implements OnInit, OnChanges {
 
     this.chatService.getMessages()
     .subscribe((message: Message) => {
+      console.log(message);
       this.conversation.messages.push(message);
     });
 
     const newMessage = new Message();
     newMessage.conversation = this.conversation._id;
-    newMessage.from = this.conversation.hostUser;
+    newMessage.from = this.user;
     newMessage.message_body = '';
+    newMessage.created_at = new Date();
     this.newMessage = newMessage;
 
+    this.setRoom();
 
   }
 
@@ -40,14 +46,22 @@ export class ConversationComponent implements OnInit, OnChanges {
 
       const newMessage = new Message();
       newMessage.conversation = this.conversation._id;
-      newMessage.from = this.conversation.hostUser;
+      newMessage.from = this.user;
       newMessage.message_body = '';
+      newMessage.created_at = new Date();
       this.newMessage = newMessage;
+
+      this.setRoom();
       // console.log(this.user);
     }
   }
 
   sendMessage() {
     this.chatService.sendMessage(this.newMessage);
+    this.newMessage.message_body = '';
+  }
+
+  setRoom() {
+    this.chatService.changeRoom(this.conversation);
   }
 }

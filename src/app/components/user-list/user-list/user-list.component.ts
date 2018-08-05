@@ -10,6 +10,7 @@ import { User } from '../../../models/user';
 export class UserListComponent implements OnInit {
 
   users: User[];
+  activeUser: User;
 
   @Output()
   selectedUser: EventEmitter<User> = new EventEmitter();
@@ -28,6 +29,7 @@ export class UserListComponent implements OnInit {
 
   selectUser(user: User) {
     this.selectedUser.emit(user);
+    this.activeUser = user;
   }
 
 }

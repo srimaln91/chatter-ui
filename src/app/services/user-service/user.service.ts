@@ -22,7 +22,7 @@ export class UserService {
   }
 
   createUser(user: User): Promise<User> {
-    return this.http.post(this.apiBase + '/registration', user, this.requestOptions)
+    return this.http.post(this.apiBase , user, this.requestOptions)
       .toPromise()
       .then(res => {
         return res.json() as User;

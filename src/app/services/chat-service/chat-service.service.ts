@@ -46,6 +46,10 @@ export class ChatService {
     });
   }
 
+  public changeRoom(conversation: Conversation): Promise<Boolean> {
+    return this.socket.emit('room', conversation._id);
+  }
+
   public getAllUsers(): Promise<User[]> {
     return this.http.get(this.apiBase + '/user', this.requestOptions)
     .toPromise()
